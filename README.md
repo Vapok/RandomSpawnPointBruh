@@ -23,6 +23,6 @@ Source: [Github](https://github.com/Vapok/RandomSpawnPointBruh)
 
 Discord: [Vapok's Mod's Community](https://discord.gg/5YAJkRFBXt)
 
-Patch notes: [Github Patchnotes](https://github.com/Vapok/RandomSpawnPointBruh/blob/main/PATCHNOTES.md)
+Patch notes: [Github Changelog](https://github.com/Vapok/RandomSpawnPointBruh/blob/main/CHANGELOG.md)
 
 
