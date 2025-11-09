@@ -1,3 +1,6 @@
+# 1.1.3 - Updating Dependencies
+* Updating Dependencies to latest versions.
+
 # 1.1.2 - Improved Spawn Point Detection - Ashlands / Deep North
 * Adds Boundary starts for Ashland and Deep North to speed up finding a random spawn point.
 * Checks for Lava when looking for Ashland spawn points.

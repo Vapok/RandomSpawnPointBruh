@@ -28,7 +28,7 @@ namespace RandomSpawnPointBruh
         //Module Constants
         private const string _pluginId = "vapok.mods.RandomSpawnPointBruh";
         private const string _displayName = "RandomSpawnPointBruh";
-        private const string _version = "1.1.2";
+        private const string _version = "1.1.3";
         
         //Interface Properties
         public string PluginId => _pluginId;
