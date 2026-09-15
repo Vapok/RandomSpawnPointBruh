@@ -1,11 +1,24 @@
-# 2.0.0 - Updated for Valheim 1.0 Release
-* Updating Dependencies to Valheim 1.0.
+# 2.0.1 - Dependency & Compatibility Maintenance
+* **Dependency Updates**: Updated Jotunn and BepInEx runtime package bindings.
+* **Compatibility Maintenance**: Verified compatibility against the latest Valheim 1.0 release.
+* **Documentation Improvements**: Standardized README, user guides, and technical patch documentation.
 
+<details>
+<summary><b>2.0 Changelog History (Valheim Release)</b> (<i>click to expand</i>)</summary>
 
-# 1.0.0 - Initial Version of RandomSpawnPointBruh
-* Provides settings to adjust the spawn points:
-  * Randomize the initial Spawn Point of Players
-    * Full control over the variables to adjust the randomization.
-  * Set a Static Spawn Point coordinate
-  * Use the Vanilla Spawn Point.
-* Configs are Server Synced to allow admins to set settings.
+### 2.0.0 - Valheim 1.0 Release & Core Modernization
+* Updated codebase and assembly references for Valheim 1.0.
+* Rebuilt on .NET Framework 4.8 with updated Jotunn and Vapok.Valheim.Common shared libraries.
+* Improved player spawn bounds safety and terrain collision detection.
+
+</details>
+
+<details>
+<summary><b>1.0 Changelog History (Valheim Early Access)</b> (<i>click to expand</i>)</summary>
+
+### 1.0.0 - Initial Release of RandomSpawnPointBruh
+* Initial release providing configurable spawn point options for new players entering the world.
+* Added support for Randomized Spawn Radius, Static Coordinates, and Vanilla spawn location.
+* Added dedicated server configuration synchronization via ServerSync.
+
+</details>

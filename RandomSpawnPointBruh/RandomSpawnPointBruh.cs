@@ -1,4 +1,4 @@
-﻿/* RandomSpawnPointBruh by Vapok */
+/* RandomSpawnPointBruh by Vapok */
 using System;
 using System.Reflection;
 using BepInEx;
@@ -28,7 +28,7 @@ namespace RandomSpawnPointBruh
         //Module Constants
         private const string _pluginId = "vapok.mods.RandomSpawnPointBruh";
         private const string _displayName = "RandomSpawnPointBruh";
-        private const string _version = "2.0.0";
+        private const string _version = "2.0.1";
         
         //Interface Properties
         public string PluginId => _pluginId;
