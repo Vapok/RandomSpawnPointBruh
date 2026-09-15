@@ -49,6 +49,18 @@ Configure via the in-game [BepInEx Configuration Manager](https://github.com/Bep
 
 ---
 
+## 🌐 Available Translations
+
+<div align="center">
+
+🇺🇸 **English** (Default)
+
+</div>
+
+*Want to help translate Random Spawn Point Bruh? Community translations are welcome! Please submit a PR on [GitHub](https://github.com/Vapok/RandomSpawnPointBruh) or stop by our [Discord](https://discord.gg/5YAJkRFBXt).*
+
+---
+
 ## 📥 Installation & Server Setup
 
 ### Mod Manager (Recommended)
