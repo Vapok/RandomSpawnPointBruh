@@ -119,7 +119,7 @@
     </PropertyGroup>
 
     <Target Name="CopyToDev" AfterTargets="ILRepack" Condition="'$(Configuration)' == 'Debug' and Exists('$(DevPluginsFolder)')">
-        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(DevPluginsFolder)/$(ProjectName)" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(DevPluginsFolder)/Vapok-$(ProjectName)" SkipUnchangedFiles="true" />
     </Target>
 
     <Target Name="Copy" AfterTargets="ILRepack" Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
