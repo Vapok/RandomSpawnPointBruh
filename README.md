@@ -23,7 +23,7 @@ Looking to shake up your Valheim world starts or establish a custom spawn locati
 
 <br>
 
-[![Survival Servers](https://raw.githubusercontent.com/Vapok/RandomSpawnPointBruh/refs/heads/main/images/survivalservers_banner.png)](https://www.survivalservers.com/services/game_servers/valheim/?ref=vapok)
+[![Survival Servers](https://raw.githubusercontent.com/Vapok/RandomSpawnPointBruh/main/images/survivalservers_banner.png)](https://www.survivalservers.com/services/game_servers/valheim/?ref=vapok)
 
 </div>
 
