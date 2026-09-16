@@ -12,6 +12,7 @@ using Vapok.Common.Abstractions;
 using Vapok.Common.Managers;
 using Vapok.Common.Managers.Configuration;
 using Vapok.Common.Managers.LocalizationManager;
+using Vapok.Common.Managers.Splash;
 using Vapok.Common.Tools;
 
 namespace RandomSpawnPointBruh
@@ -28,7 +29,7 @@ namespace RandomSpawnPointBruh
         //Module Constants
         private const string _pluginId = "vapok.mods.RandomSpawnPointBruh";
         private const string _displayName = "RandomSpawnPointBruh";
-        private const string _version = "2.0.1";
+        private const string _version = "2.0.2";
         
         //Interface Properties
         public string PluginId => _pluginId;
@@ -72,6 +73,13 @@ namespace RandomSpawnPointBruh
 
             //Register Configuration Settings
             _config = new ConfigRegistry(_instance);
+
+            ModSplashManager.Register(new ModSplashDossier(_instance)
+            {
+                Tagline = "Randomized and static player respawn and initial spawn point mechanics.",
+                ShowOnStartup = ConfigRegistry.ShowSplashOnStartup,
+                EnableTelemetry = ConfigRegistry.EnableTelemetry,
+            });
 
             Log.Debug($"HasCompetingMods: {HasCompetingMods}");
             Localizer.Waiter.StatusChanged += InitializeModule;

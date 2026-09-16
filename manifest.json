@@ -1,6 +1,6 @@
 {
   "name": "RandomSpawnPointBruh",
-  "version_number": "2.0.1",
+  "version_number": "2.0.2",
   "website_url": "https://github.com/Vapok/RandomSpawnPointBruh",
   "description": "Allows players to specify a random spawn point or static spawn point. Dedicated Server friendly!",
   "dependencies": [
