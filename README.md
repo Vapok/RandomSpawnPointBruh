@@ -4,8 +4,6 @@
 
 ### *Customized player spawn positioning and randomized world origins for Valheim.*
 
-[![Survival Servers](https://ibin.co/5RCcxHBNFp)](https://www.survivalservers.com/services/game_servers/valheim/?ref=vapok)
-
 [![GitHub Release](https://img.shields.io/github/v/release/Vapok/RandomSpawnPointBruh?include_prereleases&logo=github&style=for-the-badge)](https://github.com/Vapok/RandomSpawnPointBruh/releases)
 [![Thunderstore Version](https://img.shields.io/thunderstore/v/Vapok/RandomSpawnPointBruh?logo=thunderstore&style=for-the-badge)](https://thunderstore.io/c/valheim/p/Vapok/RandomSpawnPointBruh/)
 [![Nexus Mods](https://img.shields.io/badge/Nexus_Mods-Available-da8e35?logo=nexusmods&style=for-the-badge)](https://www.nexusmods.com/valheim/mods/2544)
@@ -20,6 +18,14 @@
 Looking to shake up your Valheim world starts or establish a custom spawn location for your multiplayer server? **Random Spawn Point Bruh!** gives server admins and world creators full control over where new Vikings begin their journey.
 
 ---
+
+<div align="center">
+
+<br>
+
+[![Survival Servers](https://raw.githubusercontent.com/Vapok/RandomSpawnPointBruh/refs/heads/main/images/survivalservers_banner.png)](https://www.survivalservers.com/services/game_servers/valheim/?ref=vapok)
+
+</div>
 
 ## 🧭 Spawn Modes
 
