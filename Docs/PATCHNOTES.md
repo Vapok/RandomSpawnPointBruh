@@ -1,3 +1,10 @@
+# 2.0.7 - Dedicated Server Spawn Point Collision Fix
+* **Deterministic Pseudo-Random Generation Fix**:
+  * Resolved an issue where multiple players joining a dedicated server would spawn on top of each other at identical coordinates.
+  * Root Cause: Valheim's world generation routines (`AltBiomeWorldData.GenerateAltBiomes()` and `WorldGenerator`) invoke `UnityEngine.Random.InitState(...)` with the world seed upon client connection and do not restore the previous RNG state. Because `SpawnPointGenerator` relied on `UnityEngine.Random`, all connecting clients shared the exact same initial RNG state, producing identical coordinate sequences across clients.
+  * Resolution: Removed `using Random = UnityEngine.Random;` and migrated `SpawnPointGenerator.GetRandomPointInBiome` to a local `System.Random` instance seeded uniquely per call with `Guid.NewGuid().GetHashCode()`.
+  * Implemented non-deterministic polar coordinate calculations with uniform area distribution ($\theta \in [0, 2\pi)$, $\text{mag} = \sqrt{u}$) ensuring distinct, non-colliding random spawn locations for every player.
+
 # 2.0.6 - Splash Window Updates & Valheim 1.0.14 Alignment
 * **Splash Window Updates**:
   * Updated telemetry default to unchecked on first launch (Opt-In).
@@ -6,7 +13,7 @@
   * Added interactive tooltip data disclaimers on checkbox hover.
 * **Valheim 1.0.14 Alignment**:
   * Aligned publicized game assembly and UnityEngine references to Valheim 1.0.14.
-  * Updated internalized  dependency to 3.12.1014.
+  * Updated internalized Vapok.Common dependency to 3.12.1014.
 
 # 2.0.5 - Jewelcrafting Font Compatibility
 * **Compatibility Fix**: Fixed issue where Jewelcrafting packages its own font which was overriding part of a vanilla font, causing the Splash screen to appear blank.

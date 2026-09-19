@@ -1,9 +1,8 @@
-﻿using System;
+using System;
 using System.Linq;
 using RandomSpawnPointBruh.Configuration;
 using UnityEngine;
 using Vapok.Common.Tools;
-using Random = UnityEngine.Random;
 
 namespace RandomSpawnPointBruh.Components;
 
@@ -110,9 +109,12 @@ public static class SpawnPointGenerator
         var maxSearchRange = ConfigRegistry.MaxSearchRange.Value;
         var stop = false;
         
+        var rng = new System.Random(Guid.NewGuid().GetHashCode());
+        float NextFloat(float min, float max) => (float)(min + (max - min) * rng.NextDouble());
+
         var rangeTries = 0;
-        var randomMinRange = Random.Range(minSearchRange, maxSearchRange/2);
-        var randomMaxRange = Random.Range(randomMinRange + ConfigRegistry.RangeSeparationFactor.Value, maxSearchRange);
+        var randomMinRange = NextFloat(minSearchRange, maxSearchRange / 2f);
+        var randomMaxRange = NextFloat(randomMinRange + ConfigRegistry.RangeSeparationFactor.Value, maxSearchRange);
         var radiusRange = new Tuple<float, float>(randomMinRange, randomMaxRange);
 
         while (rangeTries < maxRangeIncreases || stop)
@@ -124,11 +126,11 @@ public static class SpawnPointGenerator
             {
                 tries++;
 
-                var randomPoint = Random.insideUnitCircle;
-                var mag = randomPoint.magnitude;
-                var normalized = randomPoint.normalized;
+                var angle = rng.NextDouble() * Math.PI * 2.0;
+                var dir = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
+                var mag = (float)Math.Sqrt(rng.NextDouble());
                 var actualMag = Mathf.Lerp(radiusRange.Item1, radiusRange.Item2, mag);
-                randomPoint = normalized * actualMag;
+                var randomPoint = dir * actualMag;
                 var spawnPoint = new Vector3(randomPoint.x, 0, randomPoint.y);
 
                 if (biome == Heightmap.Biome.AshLands && spawnPoint.z > ConfigRegistry.AshlandsStart.Value)
