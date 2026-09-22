@@ -29,7 +29,7 @@ namespace RandomSpawnPointBruh
         //Module Constants
         private const string _pluginId = "vapok.mods.RandomSpawnPointBruh";
         private const string _displayName = "RandomSpawnPointBruh";
-        private const string _version = "2.0.7";
+        private const string _version = "2.0.8";
         
         //Interface Properties
         public string PluginId => _pluginId;
@@ -63,7 +63,7 @@ namespace RandomSpawnPointBruh
             Waiter = new Waiting();
             
             //Jotunn Localization
-            var localization = LocalizationManager.Instance.GetLocalization();
+            Jotunn.Entities.CustomLocalization localization = LocalizationManager.Instance.GetLocalization();
 
             //Register Logger
             LogManager.Init(PluginId,out _log);

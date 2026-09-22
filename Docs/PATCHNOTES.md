@@ -1,3 +1,10 @@
+# 2.0.8 - Internalized Library & Dependency Updates
+* **Dependency Updates**:
+  * Updated internalized `Vapok.Valheim.Common` to 3.17.1015.
+  * Updated `JotunnLib` dependency to 2.30.2.
+* **Compatibility Verification**:
+  * Re-verified non-deterministic polar coordinate spawn calculations across multiplayer and dedicated server configurations.
+
 # 2.0.7 - Dedicated Server Spawn Point Collision Fix
 * **Deterministic Pseudo-Random Generation Fix**:
   * Resolved an issue where multiple players joining a dedicated server would spawn on top of each other at identical coordinates.

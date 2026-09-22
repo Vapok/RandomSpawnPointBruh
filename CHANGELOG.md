@@ -1,10 +1,13 @@
-# 2.0.7 - Dedicated Server Spawn Point Collision Fix
-* **Dedicated Server Spawn Collision Fix**:
-  * Fixed an issue where multiple players connecting to a dedicated server would spawn on top of each other at identical coordinates.
-  * Migrated spawn point coordinate generation from Unity's global `UnityEngine.Random` to an independently seeded `System.Random` instance, preventing Valheim's world generation routines from locking connecting clients into identical deterministic RNG sequences.
+# 2.0.8 - Internalized Library & Dependency Updates
+* **Library Updates**: Updated internalized `Vapok.Valheim.Common` to 3.17.1015 and `Jotunn` to 2.30.2.
+* **Stability**: Verified player spawn point calculation across singleplayer, hosted co-op, and dedicated servers.
 
 <details>
 <summary><b>2.0 Changelog History (Valheim Release)</b> (<i>click to expand</i>)</summary>
+
+### 2.0.7 - Dedicated Server Spawn Point Collision Fix
+* **Dedicated Server Spawn Collision Fix**: Fixed an issue where multiple players connecting to a dedicated server would spawn on top of each other at identical coordinates.
+* **Valheim 1.0.15 Alignment**: Updated game assembly references and internalized `Vapok.Valheim.Common` 3.13.1015.
 
 ### 2.0.6 - Splash Window Updates & Valheim 1.0.14 Alignment
 * **Splash Window Updates**:
