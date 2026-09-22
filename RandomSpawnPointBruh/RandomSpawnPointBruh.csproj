@@ -97,6 +97,7 @@
         <Compile Include="Components\SpawnPointGenerator.cs" />
         <Compile Include="Configuration\ConfigRegistry.cs" />
         <Compile Include="Patches\Game.cs" />
+        <Compile Include="Patches\Minimap.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="RandomSpawnPointBruh.cs" />
     </ItemGroup>

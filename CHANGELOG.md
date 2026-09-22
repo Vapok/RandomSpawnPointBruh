@@ -1,6 +1,10 @@
-# 2.0.8 - Dependency Updates & Stability
+# 2.1.0 - Special POI Protection & Dynamic Biome Ranging
+* **Special POI Protection**: Added a configurable safety barrier and buffer distance around unique points of interest (Haldor, Hildir, and the Bog Witch) to prevent new random player spawns from triggering or prematurely revealing them on the map.
+* **Valkyrie Flight Minimap Guard**: Suppressed fog-of-war map exploration while riding the Valkyrie so flying into the world does not carve an explored trail across the map.
+* **Dynamic Biome Ranging**: Spawn point searches now automatically use the natural distance bands of each selected biome (including full support for Deep North and Ashlands polar hemispheres), removing the need for manual range tuning.
+* **Ground Elevation & Water Safeguards**: Added a minimum altitude setting above sea level to guarantee players never spawn in water, soggy marshes, or shoreline surf.
+* **Player & Base Separation**: Added configurable separation distance to prevent new spawns from landing inside or near active players, player bases, or wards.
 * **Dependency Updates**: Updated Jotunn to 2.30.2 and internal dependencies for stability.
-* **Stability**: Verified player spawn point calculation across singleplayer, hosted co-op, and dedicated servers.
 
 <details>
 <summary><b>2.0 Changelog History (Valheim Release)</b> (<i>click to expand</i>)</summary>

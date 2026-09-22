@@ -1,9 +1,22 @@
-# 2.0.8 - Internalized Library & Dependency Updates
-* **Dependency Updates**:
+# 2.1.0 - Special POI Protection & Dynamic Biome Ranging
+* **Special POI Protection & Configurable Buffer**:
+  * Implemented `SpecialPoiBufferDistance` setting (`50f` to `500f`, default `100f`, synced).
+  * In `SpawnPointGenerator`, implemented `GetSpecialPois()` and `IsNearSpecialPoi(...)` querying `ZoneSystem.instance.m_locationInstances` for locations where `m_location.m_iconPlaced == true` or `m_location.m_unique == true` (Haldor `Vendor_BlackForest`, Hildir `Hildir_camp`, Bog Witch `BogWitch_Camp`).
+  * Enforced an exclusion barrier: $\text{Barrier} = \text{Base POI Reveal Radius } (500\text{m}) + \text{Valkyrie Flight Radius } (500\text{m}) + \text{SpecialPoiBufferDistance}$.
+  * Guarded against premature evaluation during world generation by verifying `ZoneSystem.instance.LocationsGenerated` before generating candidate points and caching discovered locations.
+* **Valkyrie Flight Minimap Exploration Suppression**:
+  * Added Harmony prefix patch on `Minimap.UpdateExplore` (`Patches/Minimap.cs`) to return `false` while `player.InIntro()` is active, preventing fog-of-war uncovering along the flight corridor until touchdown.
+* **Dynamic Biome Distance Ranging & Mathematical Overhaul**:
+  * Replaced legacy sequential search radius stepping with direct mathematical evaluation via `WorldGenerator.instance` (`GetBiome`, `GetBiomeArea`, `GetHeight`).
+  * Added `GetBiomeRangeBounds` defining native biome radii bands across all biomes, with polar hemisphere angular clamping for Ashlands ($\sin < 0$) and Deep North ($\sin > 0$).
+* **Terrain, Water & Elevation Verification**:
+  * Added `MinAltitudeAboveWater` configuration setting to prevent waterline, surf, or marshland submergence.
+  * Tightened `SolidHeightTolerance` to $1.5\text{m}$ to ensure solid surface alignment.
+* **Player & Base Separation Safeguards**:
+  * Added `PlayerSeparationDistance` configuration checking `EffectArea.Type.PlayerBase`, `PrivateArea.m_allAreas` (wards), and active players via `Player.GetAllPlayers()`.
+* **Dependency & Framework Updates**:
   * Updated internalized `Vapok.Valheim.Common` to 3.17.1015.
   * Updated `JotunnLib` dependency to 2.30.2.
-* **Compatibility Verification**:
-  * Re-verified non-deterministic polar coordinate spawn calculations across multiplayer and dedicated server configurations.
 
 # 2.0.7 - Dedicated Server Spawn Point Collision Fix
 * **Deterministic Pseudo-Random Generation Fix**:
