@@ -7,6 +7,7 @@ using HarmonyLib;
 using JetBrains.Annotations;
 using Jotunn.Managers;
 using Jotunn.Utils;
+using RandomSpawnPointBruh.Components;
 using RandomSpawnPointBruh.Configuration;
 using Vapok.Common.Abstractions;
 using Vapok.Common.Managers;
@@ -112,6 +113,8 @@ namespace RandomSpawnPointBruh
         
         private void OnDestroy()
         {
+            SpawnPointGenerator.Reset();
+            StartingKitManager.Reset();
             _instance = null;
         }
     }

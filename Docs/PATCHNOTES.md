@@ -1,4 +1,12 @@
-# 2.1.0 - Special POI Protection & Dynamic Biome Ranging
+# 2.1.0 - Special POI Protection, Dynamic Biome Ranging & Biome Starting Kits
+* **Biome Starting Kits & Auto-Provisions**:
+  * Implemented `BiomeStartingKit` configuration and `StartingKitManager` component to deliver customizable equipment kits based on touchdown biome (`Heightmap.Biome`).
+  * Added server-synced settings under `[Starting Kits (Synced)]`: `Enable Starting Kits` (default false), `Clear Vanilla Starting Items` (default true), `Auto-Equip Gear` (default true), and `Auto-Consume Foods and Meads` (default true).
+  * Implemented coroutine-managed touchdown evaluation in `StartingKitManager`: queued natively on character creation via `Humanoid.GiveDefaultItems` without touching player `m_customData`. Defers item grant and consumption until `!Game.instance.WaitingForRespawn()`, `!player.InIntro()`, `!Hud.instance.m_loadingScreen.gameObject.activeInHierarchy`, and character is grounded. Prevents premature consumption or status effect loss during intro skip respawn cycles, and inherently prevents re-awarding on subsequent deaths, respawns, or re-joins.
+  * Added dedicated server and headless execution guards (`GUIManager.IsHeadless()`) to prevent UI, console commands, or coroutine execution on headless runtimes.
+  * Added targeted Harmony prefix on `Humanoid.GiveDefaultItem` to suppress only vanilla default items (`ArmorRagsLegs`, `ArmorRagsChest`, `Torch`) on new player profiles, fully coexisting with other mods that hook or append default items.
+  * Targeted item removal on landing cleans up vanilla rags/torch without clearing third-party mod inventory items.
+  * Auto-consume dynamically detects all consumables (`m_itemType == Consumable`), drinking meads/potions and eating foods via vanilla `Player.ConsumeItem` upon touchdown.
 * **Special POI Protection & Configurable Buffer**:
   * Implemented `SpecialPoiBufferDistance` setting (`50f` to `500f`, default `100f`, synced).
   * In `SpawnPointGenerator`, implemented `GetSpecialPois()` and `IsNearSpecialPoi(...)` querying `ZoneSystem.instance.m_locationInstances` for locations where `m_location.m_iconPlaced == true` or `m_location.m_unique == true` (Haldor `Vendor_BlackForest`, Hildir `Hildir_camp`, Bog Witch `BogWitch_Camp`).

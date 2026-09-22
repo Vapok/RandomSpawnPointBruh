@@ -95,6 +95,8 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Components\SpawnPointGenerator.cs" />
+        <Compile Include="Components\StartingKitManager.cs" />
+        <Compile Include="Configuration\BiomeStartingKit.cs" />
         <Compile Include="Configuration\ConfigRegistry.cs" />
         <Compile Include="Patches\Game.cs" />
         <Compile Include="Patches\Minimap.cs" />

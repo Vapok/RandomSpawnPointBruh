@@ -86,12 +86,15 @@ public static class SpawnPointGenerator
                 break;
         }
 
-        Vector3 homePoint = Game.instance.m_playerProfile.GetHomePoint();
-        if (homePoint != Vector3.zero)
+        if (Game.instance != null && Game.instance.m_playerProfile != null)
         {
-            RandomSpawnPointBruh.Log.Debug($"Player home point already set: {homePoint}");
-            pos = homePoint;
-            return true;
+            Vector3 homePoint = Game.instance.m_playerProfile.GetHomePoint();
+            if (homePoint != Vector3.zero)
+            {
+                RandomSpawnPointBruh.Log.Debug($"Player home point already set: {homePoint}");
+                pos = homePoint;
+                return true;
+            }
         }
 
         if (_pendingSpawnPoint != Vector3.zero)
@@ -485,5 +488,12 @@ public static class SpawnPointGenerator
                 return Heightmap.Biome.DeepNorth;
         }
         return Heightmap.Biome.Meadows;
+    }
+
+    public static void Reset()
+    {
+        _pendingSpawnPoint = Vector3.zero;
+        _cachedSpecialPois = null;
+        _cachedZoneSystem = null;
     }
 }

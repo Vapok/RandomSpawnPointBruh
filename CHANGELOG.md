@@ -1,9 +1,20 @@
-# 2.1.0 - Special POI Protection & Dynamic Biome Ranging
-* **Special POI Protection**: Added a configurable safety barrier and buffer distance around unique points of interest (Haldor, Hildir, and the Bog Witch) to prevent new random player spawns from triggering or prematurely revealing them on the map.
-* **Valkyrie Flight Minimap Guard**: Suppressed fog-of-war map exploration while riding the Valkyrie so flying into the world does not carve an explored trail across the map.
-* **Dynamic Biome Ranging**: Spawn point searches now automatically use the natural distance bands of each selected biome (including full support for Deep North and Ashlands polar hemispheres), removing the need for manual range tuning.
+# 2.1.0 - Special POI Protection, Dynamic Biome Ranging & Biome Starting Kits
+
+### New Features
+* **Biome Starting Kits**:
+  * Added optional starter equipment packages tailored to your landing biome (Swamp, Mountains, Plains, Mistlands, Ashlands, Deep North, and Meadows) so you can survive dangerous biomes immediately.
+  * Automatically equips weapons and armor upon touchdown.
+  * Automatically eats starter foods and drinks resistance meads upon landing so health, stamina, and environmental protections are active right away.
+  * Optional Clean Slate setting to replace default rags and torch with your biome kit without interfering with items added by other mods.
+  * Added `rspb_resetkit` devcommand (requires cheat mode enabled) to easily test or re-award starting kits in-game.
+* **Special Trader Protection**: Added a configurable safety barrier and buffer distance around unique points of interest (Haldor, Hildir, and the Bog Witch) to prevent new random player spawns from triggering or prematurely revealing them on the map.
 * **Ground Elevation & Water Safeguards**: Added a minimum altitude setting above sea level to guarantee players never spawn in water, soggy marshes, or shoreline surf.
 * **Player & Base Separation**: Added configurable separation distance to prevent new spawns from landing inside or near active players, player bases, or wards.
+* **Valkyrie Flight Minimap Guard**: Suppressed fog-of-war map exploration while riding the Valkyrie so flying into the world does not carve an explored trail across the map.
+
+### Updates
+* **Dynamic Biome Ranging**: Spawn point searches now automatically use the natural distance bands of each selected biome (including full support for Deep North and Ashlands polar hemispheres), removing the need for manual range tuning.
+* **Dedicated Server Compatibility**: Starting kit routines and client-side safe landing checks now cleanly bypass headless dedicated servers.
 * **Dependency Updates**: Updated Jotunn to 2.30.2 and internal dependencies for stability.
 
 <details>
@@ -44,15 +55,5 @@
 * Updated codebase and assembly references for Valheim 1.0.
 * Rebuilt on .NET Framework 4.8 with updated Jotunn and Vapok.Valheim.Common shared libraries.
 * Improved player spawn bounds safety and terrain collision detection.
-
-</details>
-
-<details>
-<summary><b>1.0 Changelog History (Valheim Early Access)</b> (<i>click to expand</i>)</summary>
-
-### 1.0.0 - Initial Release of RandomSpawnPointBruh
-* Initial release providing configurable spawn point options for new players entering the world.
-* Added support for Randomized Spawn Radius, Static Coordinates, and Vanilla spawn location.
-* Added dedicated server configuration synchronization via ServerSync.
 
 </details>

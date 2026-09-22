@@ -1,4 +1,5 @@
 using HarmonyLib;
+using Jotunn.Managers;
 
 namespace RandomSpawnPointBruh.Patches;
 
@@ -10,6 +11,11 @@ internal static class MinimapUpdateExplorePatch
     [HarmonyPrefix]
     private static bool Prefix(Player player)
     {
+        if (GUIManager.IsHeadless())
+        {
+            return true;
+        }
+
         if (player != null && player.InIntro())
         {
             if (!_suppressionActive)
