@@ -32,6 +32,8 @@ namespace RandomSpawnPointBruh.Configuration
         internal static ConfigEntry<bool> ClearVanillaStartingItems;
         internal static ConfigEntry<bool> AutoEquipGear;
         internal static ConfigEntry<bool> AutoConsumeConsumables;
+        internal static ConfigEntry<bool> UseBiomeSpecificStartingKit;
+        internal static ConfigEntry<UseableBiomes> DefaultStarterKit;
 
         private static readonly System.Collections.Generic.Dictionary<Heightmap.Biome, BiomeStartingKit> _kits = new System.Collections.Generic.Dictionary<Heightmap.Biome, BiomeStartingKit>();
 
@@ -116,22 +118,32 @@ namespace RandomSpawnPointBruh.Configuration
             SyncedConfig("Starting Kits (Synced)", "Enable Starting Kits", false,
                 new ConfigDescription("If enabled, awards starting equipment and survival seeds tailored to the player's initial landing biome. Defaults to false to preserve vanilla behavior for existing installs.",
                     null,
-                    new ConfigurationManagerAttributes { Category = "Starting Kits (Synced)", Order = 4 }), ref EnableStartingKits);
+                    new ConfigurationManagerAttributes { Category = "Starting Kits (Synced)", Order = 5 }), ref EnableStartingKits);
 
             SyncedConfig("Starting Kits (Synced)", "Clear Vanilla Starting Items", true,
                 new ConfigDescription("If true, removes default rag clothes and torch before awarding the biome starting kit.",
                     null,
-                    new ConfigurationManagerAttributes { Category = "Starting Kits (Synced)", Order = 3 }), ref ClearVanillaStartingItems);
+                    new ConfigurationManagerAttributes { Category = "Starting Kits (Synced)", Order = 4 }), ref ClearVanillaStartingItems);
 
             SyncedConfig("Starting Kits (Synced)", "Auto-Equip Gear", true,
                 new ConfigDescription("If true, automatically equips weapons, shields, utility belts, and armor from the kit upon landing.",
                     null,
-                    new ConfigurationManagerAttributes { Category = "Starting Kits (Synced)", Order = 2 }), ref AutoEquipGear);
+                    new ConfigurationManagerAttributes { Category = "Starting Kits (Synced)", Order = 3 }), ref AutoEquipGear);
 
             SyncedConfig("Starting Kits (Synced)", "Auto-Consume Foods and Meads", true,
                 new ConfigDescription("If true, automatically consumes one of each food and mead item included in the starting kit upon landing.",
                     null,
-                    new ConfigurationManagerAttributes { Category = "Starting Kits (Synced)", Order = 1 }), ref AutoConsumeConsumables);
+                    new ConfigurationManagerAttributes { Category = "Starting Kits (Synced)", Order = 2 }), ref AutoConsumeConsumables);
+
+            SyncedConfig("Starting Kits (Synced)", "Use Biome Specific Starter Kit", true,
+                new ConfigDescription("When enabled, awards the starting kit configured for the biome where the player lands. When disabled, awards the Default Starter Kit regardless of landing location.",
+                    null,
+                    new ConfigurationManagerAttributes { Category = "Starting Kits (Synced)", Order = 1 }), ref UseBiomeSpecificStartingKit);
+
+            SyncedConfig("Starting Kits (Synced)", "Default Starter Kit", UseableBiomes.Meadows,
+                new ConfigDescription("Selects the default biome starting kit to award when biome-specific kits are disabled or when landing in a biome without a dedicated kit.",
+                    null,
+                    new ConfigurationManagerAttributes { Category = "Starting Kits (Synced)", Order = 0 }), ref DefaultStarterKit);
 
             RegisterStartingKits();
         }

@@ -23,7 +23,8 @@ public enum UseableBiomes
     Plains,
     Mistlands,
     Ashlands,
-    DeepNorth
+    DeepNorth,
+    Ocean
 }
 
 public static class SpawnPointGenerator
@@ -151,15 +152,22 @@ public static class SpawnPointGenerator
         }
 
         float solidHeight = ZoneSystem.instance.GetSolidHeight(candidate);
-        float offsetFromGround = Math.Abs(solidHeight - candidate.y);
-        if (offsetFromGround > SolidHeightTolerance)
+        if (foundBiome != Heightmap.Biome.Ocean)
         {
-            validationTimer.Stop();
-            RandomSpawnPointBruh.Log.Debug($"Spawn Point rejected: solid height offset ({offsetFromGround:F1}m) exceeds tolerance ({SolidHeightTolerance:F1}m) ({validationTimer.Elapsed.TotalMilliseconds:F2}ms)");
-            return false;
-        }
+            float offsetFromGround = Math.Abs(solidHeight - candidate.y);
+            if (offsetFromGround > SolidHeightTolerance)
+            {
+                validationTimer.Stop();
+                RandomSpawnPointBruh.Log.Debug($"Spawn Point rejected: solid height offset ({offsetFromGround:F1}m) exceeds tolerance ({SolidHeightTolerance:F1}m) ({validationTimer.Elapsed.TotalMilliseconds:F2}ms)");
+                return false;
+            }
 
-        candidate.y = solidHeight;
+            candidate.y = solidHeight;
+        }
+        else
+        {
+            candidate.y = ZoneSystem.instance.m_waterLevel;
+        }
 
         Location activeLocation = Location.GetLocation(candidate, false);
         if (activeLocation != null)
@@ -319,7 +327,7 @@ public static class SpawnPointGenerator
                 continue;
             }
 
-            spawnPoint.y = groundHeight;
+            spawnPoint.y = (biome == Heightmap.Biome.Ocean) ? waterLevel : groundHeight;
             searchTimer.Stop();
             IsNearSpecialPoi(spawnPoint, specialPoiBuffer, out string closestName, out float closestDist, out float safeThreshold);
             float clearance = closestDist - safeThreshold;
@@ -369,6 +377,10 @@ public static class SpawnPointGenerator
             case Heightmap.Biome.DeepNorth:
                 naturalMin = 7500f;
                 naturalMax = 10000f;
+                break;
+            case Heightmap.Biome.Ocean:
+                naturalMin = 1000f;
+                naturalMax = 9000f;
                 break;
             default:
                 naturalMin = 0f;
@@ -468,7 +480,7 @@ public static class SpawnPointGenerator
         return true;
     }
 
-    private static Heightmap.Biome GetBiome(UseableBiomes biome)
+    public static Heightmap.Biome GetBiome(UseableBiomes biome)
     {
         switch (biome)
         {
@@ -486,6 +498,8 @@ public static class SpawnPointGenerator
                 return Heightmap.Biome.AshLands;
             case UseableBiomes.DeepNorth:
                 return Heightmap.Biome.DeepNorth;
+            case UseableBiomes.Ocean:
+                return Heightmap.Biome.Ocean;
         }
         return Heightmap.Biome.Meadows;
     }

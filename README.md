@@ -242,6 +242,8 @@ All settings in the table below are **Server-Synced** on dedicated servers using
 | **`[Starting Kits (Synced)]`** | `Clear Vanilla Starting Items` | `true` | `true`, `false` | Removes default rags and torch on initial spawn. |
 | **`[Starting Kits (Synced)]`** | `Auto-Equip Gear` | `true` | `true`, `false` | Automatically equips weapons, shields, armor, and utility belts. |
 | **`[Starting Kits (Synced)]`** | `Auto-Consume Foods and Meads` | `true` | `true`, `false` | Consumes 1 of each food and mead included in the kit on landing. |
+| **`[Starting Kits (Synced)]`** | `Use Biome Specific Starter Kit` | `true` | `true`, `false` | When enabled, awards the kit for the landing biome. When disabled, uses the Default Starter Kit. |
+| **`[Starting Kits (Synced)]`** | `Default Starter Kit` | `Meadows` | Any Biome Name | The starting kit to award when biome-specific kits are disabled or unavailable. |
 | **`[Starting Kits: <Biome> (Synced)]`** | `Enabled` | `true` | `true`, `false` | Enables the starting kit for that specific biome. |
 | **`[Starting Kits: <Biome> (Synced)]`** | `Kit Items` | *(See tables)* | String | Comma-separated list of items: `PrefabName:Count[:Quality]`. |
 

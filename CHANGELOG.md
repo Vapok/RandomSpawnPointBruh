@@ -3,6 +3,7 @@
 ### New Features
 * **Biome Starting Kits**:
   * Added optional starter equipment packages tailored to your landing biome (Swamp, Mountains, Plains, Mistlands, Ashlands, Deep North, and Meadows) so you can survive dangerous biomes immediately.
+  * Added options to use biome-specific starter kits or choose a single default starter kit across all spawns.
   * Automatically equips weapons and armor upon touchdown.
   * Automatically eats starter foods and drinks resistance meads upon landing so health, stamina, and environmental protections are active right away.
   * Optional Clean Slate setting to replace default rags and torch with your biome kit without interfering with items added by other mods.
@@ -14,6 +15,7 @@
 
 ### Updates
 * **Dynamic Biome Ranging**: Spawn point searches now automatically use the natural distance bands of each selected biome (including full support for Deep North and Ashlands polar hemispheres), removing the need for manual range tuning.
+* **Additional Biomes**: Added Ocean as a selectable biome.
 * **Dedicated Server Compatibility**: Starting kit routines and client-side safe landing checks now cleanly bypass headless dedicated servers.
 * **Dependency Updates**: Updated Jotunn to 2.30.2 and internal dependencies for stability.
 

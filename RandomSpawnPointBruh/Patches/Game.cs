@@ -114,7 +114,7 @@ public static class GamePatches
                 return;
             }
 
-            if (ConfigRegistry.EnableStartingKits.Value && ((__instance.m_playerProfile != null && __instance.m_playerProfile.m_firstSpawn) || spawnValkyrie))
+            if ((__instance.m_playerProfile != null && __instance.m_playerProfile.m_firstSpawn) || spawnValkyrie)
             {
                 StartingKitManager.QueueKitAward();
             }

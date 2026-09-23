@@ -56,7 +56,7 @@ public static class StartingKitManager
 
         while (true)
         {
-            if (!_hasPendingKit || !ConfigRegistry.EnableStartingKits.Value)
+            if (!_hasPendingKit)
             {
                 _activeCoroutine = null;
                 yield break;
@@ -150,25 +150,51 @@ public static class StartingKitManager
         }
 
         Vector3 position = player.transform.position;
-        Heightmap.Biome biome = WorldGenerator.instance.GetBiome(position.x, position.z);
-        BiomeStartingKit kit = ConfigRegistry.GetKit(biome);
+        Heightmap.Biome landedBiome = WorldGenerator.instance.GetBiome(position.x, position.z);
 
-        if (kit == null)
+        if (landedBiome == Heightmap.Biome.Ocean || player.InWater() || player.IsSwimming())
         {
-            if (biome == Heightmap.Biome.Ocean || player.InWater() || player.IsSwimming())
-            {
-                SpawnOceanKarve(player);
-                return;
-            }
+            SpawnOceanKarve(player);
+        }
 
-            RandomSpawnPointBruh.Log.Warning($"No starting kit registered for biome '{biome}'.");
+        if (!ConfigRegistry.EnableStartingKits.Value)
+        {
             return;
         }
 
-        bool success = kit.TryGiveKit(player);
-        if (success)
+        Heightmap.Biome targetKitBiome;
+        if (ConfigRegistry.UseBiomeSpecificStartingKit.Value && landedBiome != Heightmap.Biome.Ocean)
         {
-            RandomSpawnPointBruh.Log.Debug($"Awarded {biome} Starting Kit to '{player.GetPlayerName()}'.");
+            targetKitBiome = landedBiome;
+        }
+        else
+        {
+            targetKitBiome = SpawnPointGenerator.GetBiome(ConfigRegistry.DefaultStarterKit.Value);
+            if (targetKitBiome == Heightmap.Biome.Ocean)
+            {
+                targetKitBiome = Heightmap.Biome.Meadows;
+            }
+        }
+
+        BiomeStartingKit kit = ConfigRegistry.GetKit(targetKitBiome);
+        bool kitAwarded = false;
+        if (kit != null)
+        {
+            kitAwarded = kit.TryGiveKit(player);
+            if (kitAwarded)
+            {
+                RandomSpawnPointBruh.Log.Debug($"Awarded {targetKitBiome} Starting Kit to '{player.GetPlayerName()}'.");
+            }
+        }
+
+        if (!kitAwarded)
+        {
+            if (ConfigRegistry.ClearVanillaStartingItems.Value)
+            {
+                GiveEmergencyItem(player, "ArmorRagsChest", 1);
+                GiveEmergencyItem(player, "ArmorRagsLegs", 1);
+            }
+            GiveEmergencyItem(player, "Bread", 2);
         }
     }
 
@@ -200,13 +226,6 @@ public static class StartingKitManager
 
         UnityEngine.Object.Instantiate(karvePrefab, boatPos, rotation);
         RandomSpawnPointBruh.Log.Debug($"Ocean Easter Egg: Spawned Karve at {boatPos} for '{player.GetPlayerName()}'.");
-
-        if (ConfigRegistry.ClearVanillaStartingItems.Value)
-        {
-            GiveEmergencyItem(player, "ArmorRagsChest", 1);
-            GiveEmergencyItem(player, "ArmorRagsLegs", 1);
-        }
-        GiveEmergencyItem(player, "Bread", 2);
     }
 
     private static void GiveEmergencyItem(Player player, string prefabName, int count)

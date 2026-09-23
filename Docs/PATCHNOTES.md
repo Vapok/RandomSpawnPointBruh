@@ -22,8 +22,11 @@
   * Tightened `SolidHeightTolerance` to $1.5\text{m}$ to ensure solid surface alignment.
 * **Player & Base Separation Safeguards**:
   * Added `PlayerSeparationDistance` configuration checking `EffectArea.Type.PlayerBase`, `PrivateArea.m_allAreas` (wards), and active players via `Player.GetAllPlayers()`.
+* **Default & Biome-Specific Starting Kit Controls**:
+  * Added `UseBiomeSpecificStartingKit` configuration setting to toggle between landing-biome kits and a global default kit.
+  * Added `DefaultStarterKit` setting to designate the fallback or global starting loadout.
 * **Dependency & Framework Updates**:
-  * Updated internalized `Vapok.Valheim.Common` to 3.17.1015.
+  * Updated internalized `Vapok.Valheim.Common` to 3.19.1015.
   * Updated `JotunnLib` dependency to 2.30.2.
 
 # 2.0.7 - Dedicated Server Spawn Point Collision Fix
