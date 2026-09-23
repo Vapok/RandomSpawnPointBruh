@@ -1,6 +1,12 @@
-# 2.1.0 - Special POI Protection, Dynamic Biome Ranging & Biome Starting Kits
+# 2.1.1 - Configuration Sync & Stability Updates
 
-### New Features
+* **Configuration Sync**: Resolved a library configuration synchronization issue.
+* **Dependency Updates**: Updated internal dependencies for stability.
+
+<details>
+<summary><b>2.0 Changelog History (Valheim Release)</b> (<i>click to expand</i>)</summary>
+
+### 2.1.0 - Special POI Protection, Dynamic Biome Ranging & Biome Starting Kits
 * **Biome Starting Kits**:
   * Added optional starter equipment packages tailored to your landing biome (Swamp, Mountains, Plains, Mistlands, Ashlands, Deep North, and Meadows) so you can survive dangerous biomes immediately.
   * Added options to use biome-specific starter kits or choose a single default starter kit across all spawns.
@@ -12,15 +18,10 @@
 * **Ground Elevation & Water Safeguards**: Added a minimum altitude setting above sea level to guarantee players never spawn in water, soggy marshes, or shoreline surf.
 * **Player & Base Separation**: Added configurable separation distance to prevent new spawns from landing inside or near active players, player bases, or wards.
 * **Valkyrie Flight Minimap Guard**: Suppressed fog-of-war map exploration while riding the Valkyrie so flying into the world does not carve an explored trail across the map.
-
-### Updates
 * **Dynamic Biome Ranging**: Spawn point searches now automatically use the natural distance bands of each selected biome (including full support for Deep North and Ashlands polar hemispheres), removing the need for manual range tuning.
 * **Additional Biomes**: Added Ocean as a selectable biome.
 * **Dedicated Server Compatibility**: Starting kit routines and client-side safe landing checks now cleanly bypass headless dedicated servers.
 * **Dependency Updates**: Updated Jotunn to 2.30.2 and internal dependencies for stability.
-
-<details>
-<summary><b>2.0 Changelog History (Valheim Release)</b> (<i>click to expand</i>)</summary>
 
 ### 2.0.7 - Dedicated Server Spawn Point Collision Fix
 * **Dedicated Server Spawn Collision Fix**: Fixed an issue where multiple players connecting to a dedicated server would spawn on top of each other at identical coordinates.

@@ -1,3 +1,9 @@
+# 2.1.1 - Configuration Sync & Stability Updates
+* **Library Configuration Synchronization (`Vapok.Valheim.Common`)**:
+  * Updated internalized `Vapok.Valheim.Common` to 3.21.1015.
+  * Resolves dedicated server issue where admin-only synchronized configurations were stuck in `ReadOnly = true` mode, preventing authorized server admins from editing mod settings in `ConfigDrawers`.
+  * Synchronizes admin status immediately upon receiving `ZNet.RPC_AdminList`.
+
 # 2.1.0 - Special POI Protection, Dynamic Biome Ranging & Biome Starting Kits
 * **Biome Starting Kits & Auto-Provisions**:
   * Implemented `BiomeStartingKit` configuration and `StartingKitManager` component to deliver customizable equipment kits based on touchdown biome (`Heightmap.Biome`).
