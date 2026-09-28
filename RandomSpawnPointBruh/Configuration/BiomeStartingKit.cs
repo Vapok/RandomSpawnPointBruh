@@ -129,7 +129,7 @@ public class BiomeStartingKit
             }
         }
 
-        if (ConfigRegistry.AutoConsumeConsumables.Value)
+        if (ConfigRegistry.AutoConsumeConsumables.Value && !Jotunn.Managers.GUIManager.IsHeadless())
         {
             for (int i = 0; i < consumablePrefabs.Count; i++)
             {

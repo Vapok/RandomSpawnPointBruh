@@ -1,3 +1,7 @@
+# 2.1.2 - Dedicated Server Provisioning Stability
+* **Headless Consumption Guard (`BiomeStartingKit.cs`)**:
+  * In `BiomeStartingKit.DeliverKitCoroutine`, added `!GUIManager.IsHeadless()` guard prior to invoking `player.ConsumeItem(item, true)`, preventing `NullReferenceException` in `Player.EatFood` on dedicated servers where `Game.instance.GetPlayerProfile()` is null (resolves Sentry issue [RANDOMSPAWNPOINTBRUH-1](https://vapok-gaming.sentry.io/issues/RANDOMSPAWNPOINTBRUH-1)).
+
 # 2.1.1 - Configuration Sync & Stability Updates
 * **Library Configuration Synchronization (`Vapok.Valheim.Common`)**:
   * Updated internalized `Vapok.Valheim.Common` to 3.21.1015.
