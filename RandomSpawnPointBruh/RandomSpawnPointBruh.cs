@@ -79,7 +79,6 @@ namespace RandomSpawnPointBruh
             {
                 Tagline = "Randomized and static player respawn and initial spawn point mechanics.",
                 ShowOnStartup = ConfigRegistry.ShowSplashOnStartup,
-                EnableTelemetry = ConfigRegistry.EnableTelemetry,
             });
 
             Log.Debug($"HasCompetingMods: {HasCompetingMods}");

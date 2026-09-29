@@ -37,9 +37,6 @@ namespace RandomSpawnPointBruh.Configuration
 
         private static readonly System.Collections.Generic.Dictionary<Heightmap.Biome, BiomeStartingKit> _kits = new System.Collections.Generic.Dictionary<Heightmap.Biome, BiomeStartingKit>();
 
-        internal static ConfigEntry<bool> ShowSplashOnStartup;
-        internal static ConfigEntry<bool> EnableTelemetry;
-        
         public static Waiting Waiter;
 
         public ConfigRegistry(IPluginInfo mod): base(mod)
@@ -56,13 +53,7 @@ namespace RandomSpawnPointBruh.Configuration
                 return;
             
             //User Configs
-            UnsyncedConfig("Local Config", "Show Splash on Startup", true,
-                new ConfigDescription("If enabled, displays the mod overview and links splash screen on game startup.",
-                    null, new ConfigurationManagerAttributes { Order = 4 }), ref ShowSplashOnStartup);
 
-            UnsyncedConfig("Local Config", "Enable Anonymous Telemetry", true,
-                new ConfigDescription("If enabled, sends anonymous mod launch and heartbeat telemetry to help improve mod stability and track active versions.",
-                    null, new ConfigurationManagerAttributes { Order = 5 }), ref EnableTelemetry);
 
             SyncedConfig("General Settings (Synced)", "Enable Random Spawn Bruh!", true,
                 new ConfigDescription("If true, will randomize new player spawn points within the area parameters. Requires Game Restart.",
