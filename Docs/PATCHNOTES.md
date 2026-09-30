@@ -1,3 +1,6 @@
+# 2.1.3 - Compatibility Stability
+* **Compatibility Stability**: Updated dependencies for third party mod compatibilities.
+
 # 2.1.2 - Dedicated Server Provisioning Stability
 * **Headless Consumption Guard (`BiomeStartingKit.cs`)**:
   * In `BiomeStartingKit.DeliverKitCoroutine`, added `!GUIManager.IsHeadless()` guard prior to invoking `player.ConsumeItem(item, true)`, preventing `NullReferenceException` in `Player.EatFood` on dedicated servers where `Game.instance.GetPlayerProfile()` is null (resolves Sentry issue [RANDOMSPAWNPOINTBRUH-1](https://vapok-gaming.sentry.io/issues/RANDOMSPAWNPOINTBRUH-1)).

@@ -1,9 +1,12 @@
-# 2.1.2 - Dedicated Server Provisioning Stability
-* **Dedicated Server Safety**: Ensured starter kit consumable ingestion is strictly bypassed on dedicated servers where local player profiles do not exist.
-* **Dependency Updates**: Updated internal dependencies for stability.
+# 2.1.3 - Compatibility Stability
+* **Compatibility Stability**: Updated dependencies for third party mod compatibilities.
 
 <details>
 <summary><b>2.0 Changelog History (Valheim Release)</b> (<i>click to expand</i>)</summary>
+
+### 2.1.2 - Dedicated Server Provisioning Stability
+* **Dedicated Server Safety**: Ensured starter kit consumable ingestion is strictly bypassed on dedicated servers where local player profiles do not exist.
+* **Dependency Updates**: Updated internal dependencies for stability.
 
 ### 2.1.1 - Configuration Sync & Stability Updates
 * **Configuration Sync**: Resolved a library configuration synchronization issue.

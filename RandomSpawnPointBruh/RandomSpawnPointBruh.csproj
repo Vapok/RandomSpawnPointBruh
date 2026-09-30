@@ -121,7 +121,7 @@
         <DevPluginsFolder Condition="'$(DevPluginsFolder)' == ''">/home/vapok/Modding/Gale Profiles/Default/BepInEx/plugins</DevPluginsFolder>
     </PropertyGroup>
 
-    <Target Name="CopyToDev" AfterTargets="ILRepack" Condition="'$(Configuration)' == 'Debug' and Exists('$(DevPluginsFolder)')">
+    <Target Name="CopyToDev" AfterTargets="ILRepack" Condition="('$(Configuration)' == 'Debug' or '$(Configuration)' == 'Local' or '$(Configuration)' == 'Release') and Exists('$(DevPluginsFolder)')">
         <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(DevPluginsFolder)/Vapok-$(ProjectName)" SkipUnchangedFiles="true" />
     </Target>
 
