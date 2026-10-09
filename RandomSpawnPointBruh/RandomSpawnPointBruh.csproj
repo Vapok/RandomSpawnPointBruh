@@ -15,9 +15,9 @@
         <FileAlignment>512</FileAlignment>
         <LangVersion>latest</LangVersion>
         <ExecutePrebuild>false</ExecutePrebuild>
+        <ReferencesRoot Condition="'$(ReferencesRoot)' == ''">/home/vapok/Modding/References</ReferencesRoot>
         <VALHEIM_INSTALL>$(ReferencesRoot)\Valheim\1.0.17</VALHEIM_INSTALL>
         <BEPINEX_PATH>$(ReferencesRoot)\BepInEx\5.4.2351\BepInEx</BEPINEX_PATH>
-        <ReferencesRoot Condition="'$(ReferencesRoot)' == ''">/home/vapok/Modding/References</ReferencesRoot>
         <ReleaseRoot>/home/vapok/Modding/Releases</ReleaseRoot>
         <ModRoot>/home/vapok/Modding/Valheim/</ModRoot>
     </PropertyGroup>
