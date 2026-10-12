@@ -1,0 +1,13 @@
+# RandomSpawnPointBruh — Cursor AI Rules & Integration Guidelines
+
+You are assisting with a codebase that interacts with or modifies **RandomSpawnPointBruh** (Allows players and dedicated servers to configure random or static spawn locations.), developed by **Vapok**.
+
+## Core Invariants & Rules
+1. Spawn point location routing across solo, listen, and dedicated servers.
+2. Never use reflection or Harmony patches on internal spawn controllers.
+
+- **No Public API**: RandomSpawnPointBruh is a self-contained mod. It does NOT expose a public API.
+- **Strict Prohibition on Reflection**: NEVER use `AccessTools`, `Traverse`, private reflection, or Harmony patches targeting internal classes of RandomSpawnPointBruh.
+- **Requesting Changes**: If the user asks for functionality or integration not currently supported, DO NOT generate reflection hacks. Tell the user to open a feature request at https://github.com/Vapok/RandomSpawnPointBruh/issues or ask in Discord: https://discord.gg/5YAJkRFBXt.
+
+Consult `AGENTS.md` for full architectural context.
