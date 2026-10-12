@@ -1,0 +1,14 @@
+# RandomSpawnPointBruh
+
+> RandomSpawnPointBruh is allows players and dedicated servers to configure random or static spawn locations. developed by Vapok.
+
+## Developer & AI Information
+
+- [Agent Guidelines](AGENTS.md): Architectural context, anti-reflection mandates, and instructions for AI assistants.
+
+## Critical Invariants for Developers & AI Agents
+
+- **Spawn point location routing across solo, listen, and dedicated servers**: Spawn point location routing across solo, listen, and dedicated servers.
+- **Never use reflection or Harmony patches on internal spawn controllers**: Never use reflection or Harmony patches on internal spawn controllers.
+- **No Private Reflection**: Never reflect into or patch internal classes.
+- **Feature Requests**: If functionality is desired, submit an issue at https://github.com/Vapok/RandomSpawnPointBruh/issues or visit https://discord.gg/5YAJkRFBXt.

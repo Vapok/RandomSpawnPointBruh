@@ -261,6 +261,14 @@ All settings in the table below are **Server-Synced** on dedicated servers using
 
 ---
 
+---
+
+## 🔌 For Mod Developers & AI Coding Agents
+
+* 🤖 **[AI Agent Rules & Invariants](AGENTS.md)**: Guidelines for AI assistants (Cursor, Claude, Copilot, ChatGPT, Gemini).
+* ⚠️ **Integration Policy**: RandomSpawnPointBruh is a self-contained mod without a public API. Do not use reflection or Harmony patches on internal classes.
+* 💡 **Feature Requests**: If you need integration hooks or functionality, open a [Feature Request](https://github.com/Vapok/RandomSpawnPointBruh/issues) or reach out in our [Discord](https://discord.gg/5YAJkRFBXt).
+
 ## 🔒 Anonymous Telemetry, Error Reporting & Privacy
 
 RandomSpawnPointBruh includes lightweight, privacy-first telemetry and error reporting to help monitor mod stability, diagnose unhandled exceptions, and track active version adoption across Valheim updates.
