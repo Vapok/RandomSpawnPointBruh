@@ -269,6 +269,24 @@ All settings in the table below are **Server-Synced** on dedicated servers using
 * ⚠️ **Integration Policy**: RandomSpawnPointBruh is a self-contained mod without a public API. Do not use reflection or Harmony patches on internal classes.
 * 💡 **Feature Requests**: If you need integration hooks or functionality, open a [Feature Request](https://github.com/Vapok/RandomSpawnPointBruh/issues) or reach out in our [Discord](https://discord.gg/5YAJkRFBXt).
 
+---
+
+## 🤖 AI Disclosure & Transparency Audit
+
+In accordance with mod store's various AI policies, below is the full transparency breakdown for **RandomSpawnPointBruh**:
+
+* **Audit Status**: `AI ASSISTED`
+* **Weighted LLM Score**: `27.7%`
+
+| Category | Evaluated Surface | LLM Score | Status |
+| :--- | :--- | :--- | :--- |
+| **C# Assembly & Logic** | Decompiled C# source (88 files) | `36.7%` | C# codebase contains decompilation-resilient LLM artifacts in SpawnPointGenerator.cs (652 lines, 36.7% of author code) featuring structured constant tuning blocks. |
+| **Package Manifest & Structure** | Manifest, structure & icon (v2.1.6) | `0.0%` | Manifest structure and storefront icon are clean human artifacts (Case A desktop editor composite with pHYs chunks and solid branding). |
+| **Documentation & Copywriting** | Package documentation (38872 chars) | `65.0%` | README features LLM-assisted formatting structure including standardized table layouts, badge arrangements, and copywriting organization. |
+| **Visual & Audio Media** | In-package Unity & media assets | `0.0%` | Mod is a pure code mod containing zero in-package UnityFS AssetBundles, embedded PNG textures, or custom audio files. |
+
+---
+
 ## 🔒 Anonymous Telemetry, Error Reporting & Privacy
 
 RandomSpawnPointBruh includes lightweight, privacy-first telemetry and error reporting to help monitor mod stability, diagnose unhandled exceptions, and track active version adoption across Valheim updates.

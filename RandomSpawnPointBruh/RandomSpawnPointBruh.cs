@@ -25,12 +25,12 @@ namespace RandomSpawnPointBruh
     [BepInPlugin(_pluginId, _displayName, _version)]
     [SynchronizationMode(AdminOnlyStrictness.IfOnServer)]
     
-    public class RandomSpawnPointBruh : BaseUnityPlugin, IPluginInfo
+    public class RandomSpawnPointBruh : VapokModBase, IPluginInfo
     {
         //Module Constants
         private const string _pluginId = "vapok.mods.RandomSpawnPointBruh";
         private const string _displayName = "RandomSpawnPointBruh";
-        private const string _version = "2.1.5";
+        private const string _version = "2.1.6";
         
         //Interface Properties
         public string PluginId => _pluginId;
