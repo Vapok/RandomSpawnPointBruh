@@ -1,7 +1,7 @@
 # 2.1.6 - Valheim 1.0.21 Update & Starting Kit Fix
 * **Starting Kits**: Fixed a rare error when granting biome starting kit items on spawn.
 * **Documentation**: Added AI transparency audit disclosure to README.
-* **Compatibility**: Marked incompatible with NoPopUpsInMyValheim, and updated dependencies for Valheim 1.0.21 and BepInEx 5.4.2360.
+* **Compatibility**: Updated dependencies for Valheim 1.0.21 and BepInEx 5.4.2360.
 
 <details>
 <summary><b>2.0 Changelog History (Valheim Release)</b> (<i>click to expand</i>)</summary>
