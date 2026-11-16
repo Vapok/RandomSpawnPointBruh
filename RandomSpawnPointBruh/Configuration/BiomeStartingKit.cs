@@ -36,12 +36,12 @@ public class BiomeStartingKit
 
     public bool TryGiveKit(Player player)
     {
-        if (player == null || player.IsDead() || !Enabled.Value || ObjectDB.instance == null)
+        if (player == null || player.IsDead() || player.GetInventory() == null || Enabled == null || !Enabled.Value || KitItems == null || ObjectDB.instance == null)
         {
             return false;
         }
 
-        if (ConfigRegistry.ClearVanillaStartingItems.Value)
+        if (ConfigRegistry.ClearVanillaStartingItems != null && ConfigRegistry.ClearVanillaStartingItems.Value)
         {
             RemoveVanillaStartingItem(player, "ArmorRagsChest");
             RemoveVanillaStartingItem(player, "ArmorRagsLegs");
@@ -84,7 +84,7 @@ public class BiomeStartingKit
                 }
 
                 ItemDrop itemDrop = prefab.GetComponent<ItemDrop>();
-                if (itemDrop == null)
+                if (itemDrop == null || itemDrop.m_itemData == null || itemDrop.m_itemData.m_shared == null)
                 {
                     RandomSpawnPointBruh.Log.Warning($"Starting Kit ({Biome}): Prefab '{prefabName}' does not have an ItemDrop component!");
                     continue;
@@ -112,7 +112,7 @@ public class BiomeStartingKit
                         {
                             player.AddKnownItem(addedItem);
 
-                            if (ConfigRegistry.AutoEquipGear.Value && IsEquippable(addedItem))
+                            if (ConfigRegistry.AutoEquipGear != null && ConfigRegistry.AutoEquipGear.Value && IsEquippable(addedItem))
                             {
                                 player.EquipItem(addedItem, triggerEquipEffects: false);
                             }
@@ -129,13 +129,13 @@ public class BiomeStartingKit
             }
         }
 
-        if (ConfigRegistry.AutoConsumeConsumables.Value && !Jotunn.Managers.GUIManager.IsHeadless())
+        if (ConfigRegistry.AutoConsumeConsumables != null && ConfigRegistry.AutoConsumeConsumables.Value && !Jotunn.Managers.GUIManager.IsHeadless())
         {
             for (int i = 0; i < consumablePrefabs.Count; i++)
             {
                 string consumablePrefab = consumablePrefabs[i];
                 ItemDrop.ItemData item = player.GetInventory().GetItem(consumablePrefab, -1, isPrefabName: true);
-                if (item != null)
+                if (item != null && item.m_shared != null)
                 {
                     bool consumed = player.ConsumeItem(player.GetInventory(), item);
                     if (!consumed)
@@ -148,7 +148,7 @@ public class BiomeStartingKit
                                 RandomSpawnPointBruh.Log.Debug($"Starting Kit ({Biome}): Auto-consumed 1x food '{consumablePrefab}'.");
                             }
                         }
-                        else if (item.m_shared.m_consumeStatusEffect != null)
+                        else if (item.m_shared.m_consumeStatusEffect != null && player.GetSEMan() != null)
                         {
                             player.GetSEMan().AddStatusEffect(item.m_shared.m_consumeStatusEffect, resetTime: true);
                             player.GetInventory().RemoveOneItem(item);

@@ -1,3 +1,11 @@
+# 2.1.6 - Valheim 1.0.21 Update & Starting Kit Fix
+* **BiomeStartingKit Hardening (`RANDOMSPAWNPOINTBRUH-1`)**:
+  * Added null guards on `Enabled`, `KitItems`, `ItemDrop.m_itemData.m_shared`, `player.GetInventory()`, and `player.GetSEMan()` in `BiomeStartingKit.TryGiveKit`.
+* **Dependency & Engine Alignment**:
+  * Inherited `VapokModBase` to declare `[BepInIncompatibility("IAmOnTheInternetAndItIsScary.NoPopUpsInMyValheim")]`.
+  * Updated internalized dependency `Vapok.Valheim.Common` to 3.1021.2.
+  * Aligned game assembly references to Valheim 1.0.21 and BepInEx 5.4.2360.
+
 # 2.1.5 - Dependency Updates & Valheim 1.0.20 Alignment
 * **Dependency & Engine Alignment**:
   * Updated internalized dependency `Vapok.Valheim.Common` to 3.1020.1.
