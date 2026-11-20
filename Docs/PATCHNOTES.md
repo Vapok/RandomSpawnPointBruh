@@ -1,3 +1,10 @@
+# 2.1.7 - Dedicated Server First-Spawn Login Fix
+* **Dedicated Server Client Spawn Readiness & Special POI Sync (`SpawnPointGenerator.cs`)**:
+  * Fixed an infinite loading screen stall when a remote client joins a dedicated or player-hosted server without an existing logout point or bed spawn (`Game.FindSpawnPoint` -> `SpawnPointGenerator.GetSpawnPoint`).
+  * Root Cause: `ZoneSystem.instance.LocationsGenerated` (`m_locationsGenerated`) is a server-authoritative property populated only by `ZoneSystem.Load` or `ZoneSystem.GenerateLocations` on the server/solo host. Remote clients receive location icons via `ZoneSystem.RPC_LocationIcons` (`m_locationIcons`), leaving `ZoneSystem.instance.LocationsGenerated` permanently `false` on remote clients and causing `GetSpawnPoint` to return `false` every frame.
+  * Resolution: Scoped the `!ZoneSystem.instance.LocationsGenerated` readiness gate strictly to `ZNet.instance.IsServer()`. On remote clients (`!ZNet.instance.IsServer()`), gated spawn readiness on `ZoneSystem.instance.GetLocationIcon(startLocation, out originalPosition)` returning `true` (confirming `RPC_LocationIcons` has arrived from the server).
+  * Updated `SpawnPointGenerator.GetSpecialPois()` to query `ZoneSystem.instance.GetLocationIcons(...)` when running on a remote client (`!ZNet.instance.IsServer()`), ensuring Special POI safety barriers remain active on dedicated servers.
+
 # 2.1.6 - Valheim 1.0.21 Update & Starting Kit Fix
 * **BiomeStartingKit Hardening (`RANDOMSPAWNPOINTBRUH-1`)**:
   * Added null guards on `Enabled`, `KitItems`, `ItemDrop.m_itemData.m_shared`, `player.GetInventory()`, and `player.GetSEMan()` in `BiomeStartingKit.TryGiveKit`.
