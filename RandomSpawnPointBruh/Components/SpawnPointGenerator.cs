@@ -59,7 +59,13 @@ public static class SpawnPointGenerator
 
     public static bool GetSpawnPoint(string startLocation, out Vector3 pos)
     {
-        if (ZoneSystem.instance == null || !ZoneSystem.instance.LocationsGenerated)
+        if (ZoneSystem.instance == null || ZNet.instance == null)
+        {
+            pos = Vector3.zero;
+            return false;
+        }
+
+        if (ZNet.instance.IsServer() && !ZoneSystem.instance.LocationsGenerated)
         {
             RandomSpawnPointBruh.Log.Debug("Waiting for world locations to generate before selecting spawn point...");
             pos = Vector3.zero;
@@ -67,6 +73,13 @@ public static class SpawnPointGenerator
         }
 
         bool startTemple = ZoneSystem.instance.GetLocationIcon(startLocation, out Vector3 originalPosition);
+
+        if (!ZNet.instance.IsServer() && !startTemple)
+        {
+            RandomSpawnPointBruh.Log.Debug("Waiting for location icons from server before selecting spawn point...");
+            pos = Vector3.zero;
+            return false;
+        }
 
         if (!ConfigRegistry.Enabled.Value)
         {
@@ -391,7 +404,13 @@ public static class SpawnPointGenerator
 
     private static List<SpecialPoiData> GetSpecialPois()
     {
-        if (ZoneSystem.instance == null || !ZoneSystem.instance.LocationsGenerated || ZoneSystem.instance.m_locationInstances == null)
+        if (ZoneSystem.instance == null || ZNet.instance == null)
+        {
+            return null;
+        }
+
+        bool isServer = ZNet.instance.IsServer();
+        if (isServer && (!ZoneSystem.instance.LocationsGenerated || ZoneSystem.instance.m_locationInstances == null))
         {
             return null;
         }
@@ -401,20 +420,33 @@ public static class SpawnPointGenerator
             return _cachedSpecialPois;
         }
 
-        _cachedZoneSystem = ZoneSystem.instance;
         List<SpecialPoiData> positions = new List<SpecialPoiData>();
 
-        foreach (ZoneSystem.LocationInstance loc in ZoneSystem.instance.m_locationInstances.Values)
+        if (isServer)
         {
-            if (loc.m_location != null && (loc.m_location.m_iconPlaced || loc.m_location.m_unique))
+            foreach (ZoneSystem.LocationInstance loc in ZoneSystem.instance.m_locationInstances.Values)
             {
-                string poiName = loc.m_location.m_prefab != null ? loc.m_location.m_prefab.Name : "SpecialPOI";
-                positions.Add(new SpecialPoiData { Position = loc.m_position, Name = poiName });
+                if (loc.m_location != null && (loc.m_location.m_iconPlaced || loc.m_location.m_unique))
+                {
+                    string poiName = loc.m_location.m_prefab != null ? loc.m_location.m_prefab.Name : "SpecialPOI";
+                    positions.Add(new SpecialPoiData { Position = loc.m_position, Name = poiName });
+                }
+            }
+        }
+        else
+        {
+            Dictionary<Vector3, string> locationIcons = new Dictionary<Vector3, string>();
+            ZoneSystem.instance.GetLocationIcons(locationIcons);
+            foreach (KeyValuePair<Vector3, string> kvp in locationIcons)
+            {
+                string poiName = !string.IsNullOrEmpty(kvp.Value) ? kvp.Value : "SpecialPOI";
+                positions.Add(new SpecialPoiData { Position = kvp.Key, Name = poiName });
             }
         }
 
         if (positions.Count > 0)
         {
+            _cachedZoneSystem = ZoneSystem.instance;
             _cachedSpecialPois = positions;
             RandomSpawnPointBruh.Log.Debug($"Discovered and cached {_cachedSpecialPois.Count} special POI positions for spawn protection");
         }

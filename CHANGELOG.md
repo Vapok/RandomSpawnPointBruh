@@ -1,10 +1,13 @@
-# 2.1.6 - Valheim 1.0.21 Update & Starting Kit Fix
-* **Starting Kits**: Fixed a rare error when granting biome starting kit items on spawn.
-* **Documentation**: Added AI transparency audit disclosure to README.
-* **Compatibility**: Updated dependencies for Valheim 1.0.21 and BepInEx 5.4.2360.
+# 2.1.7 - Dedicated Server First-Spawn Login Fix
+* **Dedicated Server Login Fix**: Fixed an issue where new characters joining a dedicated server for the first time (or respawning without a bed) would hang indefinitely on the loading screen after the intro cinematic.
 
 <details>
 <summary><b>2.0 Changelog History (Valheim Release)</b> (<i>click to expand</i>)</summary>
+
+### 2.1.6 - Valheim 1.0.21 Update & Starting Kit Fix
+* **Starting Kits**: Fixed a rare error when granting biome starting kit items on spawn.
+* **Documentation**: Added AI transparency audit disclosure to README.
+* **Compatibility**: Updated dependencies for Valheim 1.0.21 and BepInEx 5.4.2360.
 
 
 
