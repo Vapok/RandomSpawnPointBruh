@@ -101,15 +101,21 @@ public class BiomeStartingKit
                 {
                     int toAdd = Mathf.Min(remaining, itemDrop.m_itemData.m_shared.m_maxStackSize);
                     ItemDrop.ItemData itemData = itemDrop.m_itemData.Clone();
+                    itemData.m_dropPrefab = prefab;
                     itemData.m_stack = toAdd;
                     itemData.m_quality = Mathf.Clamp(quality, 1, itemData.m_shared.m_maxQuality);
                     itemData.m_durability = itemData.GetMaxDurability();
 
                     if (player.GetInventory().AddItem(itemData))
                     {
-                        ItemDrop.ItemData addedItem = player.GetInventory().GetItem(prefabName, itemData.m_quality, isPrefabName: true);
+                        ItemDrop.ItemData addedItem = FindItemInInventory(player.GetInventory(), prefabName, itemData.m_shared.m_name, itemData.m_quality);
                         if (addedItem != null)
                         {
+                            if (addedItem.m_dropPrefab == null)
+                            {
+                                addedItem.m_dropPrefab = prefab;
+                            }
+
                             player.AddKnownItem(addedItem);
 
                             if (ConfigRegistry.AutoEquipGear != null && ConfigRegistry.AutoEquipGear.Value && IsEquippable(addedItem))
@@ -134,7 +140,10 @@ public class BiomeStartingKit
             for (int i = 0; i < consumablePrefabs.Count; i++)
             {
                 string consumablePrefab = consumablePrefabs[i];
-                ItemDrop.ItemData item = player.GetInventory().GetItem(consumablePrefab, -1, isPrefabName: true);
+                GameObject cPrefab = ObjectDB.instance.GetItemPrefab(consumablePrefab);
+                ItemDrop cDrop = cPrefab != null ? cPrefab.GetComponent<ItemDrop>() : null;
+                string sharedName = (cDrop != null && cDrop.m_itemData != null && cDrop.m_itemData.m_shared != null) ? cDrop.m_itemData.m_shared.m_name : null;
+                ItemDrop.ItemData item = FindItemInInventory(player.GetInventory(), consumablePrefab, sharedName, -1);
                 if (item != null && item.m_shared != null)
                 {
                     bool consumed = player.ConsumeItem(player.GetInventory(), item);
@@ -166,6 +175,43 @@ public class BiomeStartingKit
         return true;
     }
 
+    private static ItemDrop.ItemData FindItemInInventory(Inventory inventory, string prefabName, string sharedName, int quality)
+    {
+        if (inventory == null)
+        {
+            return null;
+        }
+
+        List<ItemDrop.ItemData> allItems = inventory.GetAllItems();
+        if (allItems == null)
+        {
+            return null;
+        }
+
+        for (int i = 0; i < allItems.Count; i++)
+        {
+            ItemDrop.ItemData candidate = allItems[i];
+            if (candidate == null)
+            {
+                continue;
+            }
+
+            if (quality > 0 && candidate.m_quality != quality)
+            {
+                continue;
+            }
+
+            bool matchesPrefab = candidate.m_dropPrefab != null && candidate.m_dropPrefab.name == prefabName;
+            bool matchesShared = !string.IsNullOrEmpty(sharedName) && candidate.m_shared != null && candidate.m_shared.m_name == sharedName;
+            if (matchesPrefab || matchesShared)
+            {
+                return candidate;
+            }
+        }
+
+        return null;
+    }
+
     private static bool IsEquippable(ItemDrop.ItemData itemData)
     {
         if (itemData.IsWeapon())
@@ -184,7 +230,10 @@ public class BiomeStartingKit
 
     private static void RemoveVanillaStartingItem(Player player, string prefabName)
     {
-        ItemDrop.ItemData item = player.GetInventory().GetItem(prefabName, -1, isPrefabName: true);
+        GameObject prefab = ObjectDB.instance != null ? ObjectDB.instance.GetItemPrefab(prefabName) : null;
+        ItemDrop itemDrop = prefab != null ? prefab.GetComponent<ItemDrop>() : null;
+        string sharedName = (itemDrop != null && itemDrop.m_itemData != null && itemDrop.m_itemData.m_shared != null) ? itemDrop.m_itemData.m_shared.m_name : null;
+        ItemDrop.ItemData item = FindItemInInventory(player.GetInventory(), prefabName, sharedName, -1);
         if (item != null)
         {
             if (player.IsItemEquiped(item))

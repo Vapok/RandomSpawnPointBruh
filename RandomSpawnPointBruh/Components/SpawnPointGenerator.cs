@@ -428,7 +428,9 @@ public static class SpawnPointGenerator
             {
                 if (loc.m_location != null && (loc.m_location.m_iconPlaced || loc.m_location.m_unique))
                 {
-                    string poiName = loc.m_location.m_prefab != null ? loc.m_location.m_prefab.Name : "SpecialPOI";
+                    string poiName = !string.IsNullOrEmpty(loc.m_location.m_prefabName)
+                        ? loc.m_location.m_prefabName
+                        : (loc.m_location.m_prefab.IsValid ? loc.m_location.m_prefab.name : "SpecialPOI");
                     positions.Add(new SpecialPoiData { Position = loc.m_position, Name = poiName });
                 }
             }

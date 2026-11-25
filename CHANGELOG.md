@@ -1,8 +1,13 @@
-# 2.1.7 - Dedicated Server First-Spawn Login Fix
-* **Dedicated Server Login Fix**: Fixed an issue where new characters joining a dedicated server for the first time (or respawning without a bed) would hang indefinitely on the loading screen after the intro cinematic.
+# 2.1.8 - Valheim 1.0.30 Update & Starting Kit Fix
+* **Valheim 1.0.30 Support**: Fixed a spawn point search crash caused by a game engine update in Valheim 1.0.30.
+* **Starting Kits**: Fixed an error when granting starting kit items on spawn.
+* **Dependencies**: Updated dependencies for stability.
 
 <details>
 <summary><b>2.0 Changelog History (Valheim Release)</b> (<i>click to expand</i>)</summary>
+
+### 2.1.7 - Dedicated Server First-Spawn Login Fix
+* **Dedicated Server Login Fix**: Fixed an issue where new characters joining a dedicated server for the first time (or respawning without a bed) would hang indefinitely on the loading screen after the intro cinematic.
 
 ### 2.1.6 - Valheim 1.0.21 Update & Starting Kit Fix
 * **Starting Kits**: Fixed a rare error when granting biome starting kit items on spawn.
