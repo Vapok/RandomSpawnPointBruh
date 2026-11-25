@@ -1,3 +1,14 @@
+# 2.1.8 - Valheim 1.0.30 Update & Starting Kit Fix
+* **Valheim 1.0.30 `SoftReference<T>.name` Fix (`SpawnPointGenerator.cs`)**:
+  * Fixed `MissingMethodException: Method not found: string SoftReferenceableAssets.SoftReference'1.get_Name()` in `SpawnPointGenerator.GetSpecialPois()` caused by Valheim 1.0.30 renaming `SoftReference<T>.Name` to lowercase `SoftReference<T>.name`.
+  * Updated `GetSpecialPois()` to prefer `loc.m_location.m_prefabName` and fall back to `loc.m_location.m_prefab.name` when `m_prefab.IsValid` is true.
+* **Starting Kit `m_dropPrefab` Assignment & Lookup Safety (`BiomeStartingKit.cs`)**:
+  * Fixed `NullReferenceException` in `Inventory.GetItem(string, int, bool)` when `TryGiveKit` cloned an `ItemData` directly from an `ObjectDB` template prefab where `m_dropPrefab` was null.
+  * Assigned `itemData.m_dropPrefab = prefab` upon cloning and replaced direct `Inventory.GetItem(..., isPrefabName: true)` calls with a null-safe `FindItemInInventory` helper checking `candidate.m_dropPrefab != null`.
+* **Dependency & Engine Alignment**:
+  * Updated internalized dependency `Vapok.Valheim.Common` to 3.1030.1.
+  * Aligned game assembly references to Valheim 1.0.30.
+
 # 2.1.7 - Dedicated Server First-Spawn Login Fix
 * **Dedicated Server Client Spawn Readiness & Special POI Sync (`SpawnPointGenerator.cs`)**:
   * Fixed an infinite loading screen stall when a remote client joins a dedicated or player-hosted server without an existing logout point or bed spawn (`Game.FindSpawnPoint` -> `SpawnPointGenerator.GetSpawnPoint`).
